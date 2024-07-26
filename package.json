@@ -1,0 +1,37 @@
+{
+  "name": "databag",
+  "version": "0.0.0",
+  "description": "Credential management tool for JavaScript backend",
+  "main": "./lib/index.js",
+  "bin": {
+    "databag": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "rm -rf ./lib && tsc -p tsconfig.json && crlf --set=LF bin/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cshaxu/databag-js.git"
+  },
+  "keywords": [
+    "backend",
+    "credential",
+    "databag",
+    "tool"
+  ],
+  "author": "cshaxu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cshaxu/databag-js/issues"
+  },
+  "homepage": "https://github.com/cshaxu/databag-js#readme",
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "crlf": "^1.1.1",
+    "typescript": "^5.4.5"
+  }
+}

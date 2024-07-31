@@ -107,10 +107,19 @@ async function main(args) {
   }
   const keyPathParts = keyPath.split(/[./]/);
 
-  const value = args
-    .filter((arg) => arg.startsWith("--value="))
-    .map((arg) => arg.replace("--value=", ""))
+  const valueFile = args
+    .filter((arg) => arg.startsWith("--value-file="))
+    .map((arg) => arg.replace("--value-file=", ""))
     .at(0);
+  const fileValue = valueFile?.length
+    ? await fs.promises.readFile(valueFile, "utf8")
+    : undefined;
+  const value =
+    fileValue ??
+    args
+      .filter((arg) => arg.startsWith("--value="))
+      .map((arg) => arg.replace("--value=", ""))
+      .at(0);
   if (value?.length) {
     let entry = json;
 

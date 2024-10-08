@@ -57,12 +57,12 @@ async function main(args) {
     .map((arg) => arg.replace("--file=", ""))
     .at(0);
   if (!jsonFile?.length) {
-    throw new Error('[AIRDEV-DATABAG/ERROR] missing "--file" argument');
+    throw new Error('[DATABAG/ERROR] missing "--file" argument');
   }
 
   const jsonFilePath = path.join(PROJECT_PATH, jsonFile);
   if (!fs.existsSync(jsonFilePath)) {
-    throw new Error(`[AIRDEV-DATABAG/ERROR] missing "${jsonFilePath}"`);
+    throw new Error(`[DATABAG/ERROR] missing "${jsonFilePath}"`);
   }
 
   const password = args
@@ -70,7 +70,7 @@ async function main(args) {
     .map((arg) => arg.replace("--password=", ""))
     .at(0);
   if (!password?.length) {
-    throw new Error('[AIRDEV-DATABAG/ERROR] missing "--password" argument');
+    throw new Error('[DATABAG/ERROR] missing "--password" argument');
   }
 
   const json = await fs.promises
@@ -93,7 +93,7 @@ async function main(args) {
       JSON.stringify(processedJson, null, 2)
     );
     console.log(
-      `[AIRDEV-DATABAG] successfully ${isEncrypt ? "encrypted" : "decrypted"}`
+      `[DATABAG] successfully ${isEncrypt ? "encrypted" : "decrypted"}`
     );
     return;
   }
@@ -103,7 +103,7 @@ async function main(args) {
     .map((arg) => arg.replace("--key=", ""))
     .at(0);
   if (!keyPath?.length) {
-    throw new Error('[AIRDEV-DATABAG/ERROR] missing "--key" argument');
+    throw new Error('[DATABAG/ERROR] missing "--key" argument');
   }
   const keyPathParts = keyPath.split(/[./]/);
 
@@ -133,7 +133,7 @@ async function main(args) {
     await fs.promises.writeFile(outputPath, JSON.stringify(json, null, 2));
 
     console.log(
-      `[AIRDEV-DATABAG] "${keyPath}" updated to "${decrypt(
+      `[DATABAG] "${keyPath}" updated to "${decrypt(
         entry[keyPathParts.at(-1)],
         password
       )}"`
@@ -143,7 +143,7 @@ async function main(args) {
     for (const keyPathPart of keyPathParts) {
       entry = entry[keyPathPart];
       if (!entry) {
-        throw new Error(`[AIRDEV-DATABAG/ERROR] missing "${keyPathPart}"`);
+        throw new Error(`[DATABAG/ERROR] missing "${keyPathPart}"`);
       }
     }
 
